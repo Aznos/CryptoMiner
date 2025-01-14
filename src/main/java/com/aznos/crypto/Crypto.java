@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +28,8 @@ public final class Crypto extends JavaPlugin {
         makeDataFolder();
         initDB();
 
+        registerMiners();
+
         Bukkit.getScheduler().runTaskTimer(this, () -> {
             getLogger().info("Giving out crypto mining revenue to players");
             for(Player player : Bukkit.getOnlinePlayers()) {
@@ -37,14 +40,14 @@ public final class Crypto extends JavaPlugin {
 
                 for(String miner : inventory.trim().split(",")) {
                     if(miner.equalsIgnoreCase("GT-1030")) {
-                        data = new PlayerData(inventory, data.crypto() + GT1030.getRevenue(MINERS.get("GT-1030").getHashRate(), MINERS.get("GT-1030").getPowerConsumption()));
+                        data = new PlayerData(inventory, data.crypto() + calculateRevenue(MINERS.get("GT-1030").getHashRate(), MINERS.get("GT-1030").getPowerConsumption()));
                         Database.savePlayerData(player.getUniqueId(), data.inventory(), data.crypto());
-                        revenueEarnedFromMiners += GT1030.getRevenue(MINERS.get("GT-1030").getHashRate(), MINERS.get("GT-1030").getPowerConsumption());
+                        revenueEarnedFromMiners += calculateRevenue(MINERS.get("GT-1030").getHashRate(), MINERS.get("GT-1030").getPowerConsumption());
                     }
                 }
 
                 if(revenueEarnedFromMiners > 0) {
-                    player.sendMessage(ChatColor.GREEN + "You have earned " + ChatColor.GOLD + ChatColor.BOLD + revenueEarnedFromMiners + ChatColor.RESET + ChatColor.GOLD + "₿ from your miners");
+                    player.sendMessage(ChatColor.GREEN + "You have earned " + ChatColor.GOLD + ChatColor.BOLD + formatBitcoin(revenueEarnedFromMiners) + ChatColor.RESET + ChatColor.GOLD + "₿ from your miners");
                 }
             }
         }, 100, 100);
@@ -67,5 +70,28 @@ public final class Crypto extends JavaPlugin {
         if(!getDataFolder().exists()) {
             getDataFolder().mkdir();
         }
+    }
+
+    private void registerMiners() {
+        MINERS.put("GT-1030", new GT1030());
+    }
+
+    public static double calculateRevenue(double hashRate, double powerConsumption) {
+        double networkHashRate = 400e18; //400 EH/s
+        double blockReward = 6.25;
+        int blocksPerDay = 144;
+        double electricityRate = 0.0001;
+        double bitcoinPrice = 92_000;
+
+        double grossRevenue = (hashRate / networkHashRate) * blockReward * blocksPerDay;
+        double electricityCost = (powerConsumption * electricityRate) / bitcoinPrice;
+        double netRevenue = grossRevenue - electricityCost;
+
+        return Math.max(netRevenue, 0.00000001);
+    }
+
+    public static String formatBitcoin(double value) {
+        DecimalFormat df = new DecimalFormat("0.00000000");
+        return df.format(value);
     }
 }
