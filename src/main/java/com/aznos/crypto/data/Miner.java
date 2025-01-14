@@ -31,6 +31,10 @@ public class Miner {
         return cost;
     }
 
+    public double getSellValue() {
+        return cost * 0.6;
+    }
+
     public static ItemStack getItemStack() {
         return null;
     }

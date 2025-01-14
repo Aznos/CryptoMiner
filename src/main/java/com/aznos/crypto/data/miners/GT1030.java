@@ -11,13 +11,13 @@ import java.util.List;
 
 public class GT1030 extends Miner {
     public GT1030() {
-        super("GT 1030", 6.8, 30, 50);
+        super("GT-1030", 6.8, 30, 50);
     }
 
     public static ItemStack getItemStack() {
         ItemStack stack = new ItemStack(Material.DIRT);
         ItemMeta meta = stack.getItemMeta();
-        meta.setDisplayName(ChatColor.GREEN + "GT 1030");
+        meta.setDisplayName(ChatColor.GREEN + "GT-1030");
 
         List<String> lore = List.of(
                 ChatColor.GRAY + "Manufacturer: " + ChatColor.GREEN + "Nvidia",
