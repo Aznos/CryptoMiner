@@ -1,5 +1,7 @@
 package com.aznos.crypto.data;
 
+import org.bukkit.inventory.ItemStack;
+
 public class Miner {
     private final String name;
     private final double hashRate;
@@ -27,5 +29,9 @@ public class Miner {
 
     public double getCost() {
         return cost;
+    }
+
+    public static ItemStack getItemStack() {
+        return null;
     }
 }
