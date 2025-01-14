@@ -5,6 +5,7 @@ import com.aznos.crypto.data.Miner;
 import com.aznos.crypto.data.PlayerData;
 import com.aznos.crypto.data.miners.GT1030;
 import com.aznos.crypto.db.Database;
+import com.aznos.crypto.listener.InventoryClick;
 import com.aznos.crypto.tab.CryptoCommandTab;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -64,6 +65,8 @@ public final class Crypto extends JavaPlugin {
 
         getCommand("crypto").setExecutor(new CryptoCommand());
         getCommand("crypto").setTabCompleter(new CryptoCommandTab());
+
+        getServer().getPluginManager().registerEvents(new InventoryClick(), this);
     }
 
     @Override
