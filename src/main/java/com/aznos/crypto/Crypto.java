@@ -5,6 +5,7 @@ import com.aznos.crypto.data.Miner;
 import com.aznos.crypto.data.PlayerData;
 import com.aznos.crypto.data.miners.GT1030;
 import com.aznos.crypto.db.Database;
+import com.aznos.crypto.tab.CryptoCommandTab;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -19,7 +20,7 @@ import static com.aznos.crypto.db.Database.connection;
 import static com.aznos.crypto.db.Database.initDB;
 
 public final class Crypto extends JavaPlugin {
-    private static final Map<String, Miner> MINERS = new HashMap<>();
+    public static final Map<String, Miner> MINERS = new HashMap<>();
     public static Crypto INSTANCE;
 
     @Override
@@ -53,6 +54,7 @@ public final class Crypto extends JavaPlugin {
         }, 100, 100);
 
         getCommand("crypto").setExecutor(new CryptoCommand());
+        getCommand("crypto").setTabCompleter(new CryptoCommandTab());
     }
 
     @Override

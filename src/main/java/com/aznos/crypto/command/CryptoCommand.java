@@ -1,5 +1,6 @@
 package com.aznos.crypto.command;
 
+import com.aznos.crypto.Crypto;
 import com.aznos.crypto.data.miners.GT1030;
 import com.aznos.crypto.db.Database;
 import com.aznos.crypto.data.PlayerData;
@@ -19,14 +20,14 @@ public class CryptoCommand implements CommandExecutor {
             if(args.length == 1) {
                 if(sender instanceof Player player) {
                     PlayerData data = Database.fetchPlayerData(player.getUniqueId());
-                    player.sendMessage(ChatColor.GREEN + "You have " + ChatColor.GOLD + ChatColor.BOLD + data.crypto() + ChatColor.RESET + ChatColor.GOLD + "₿");
+                    player.sendMessage(ChatColor.GREEN + "You have " + ChatColor.GOLD + ChatColor.BOLD + Crypto.formatBitcoin(data.crypto()) + ChatColor.RESET + ChatColor.GOLD + "₿");
                 } else {
                     sender.sendMessage("You must be a player to use this command");
                 }
             } else {
                 if(Bukkit.getOfflinePlayer(args[1]).hasPlayedBefore()) {
                     PlayerData data = Database.fetchPlayerData(Bukkit.getOfflinePlayer(args[1]).getUniqueId());
-                    sender.sendMessage(ChatColor.GREEN + args[1] + " has " + ChatColor.GOLD + ChatColor.BOLD + data.crypto() + ChatColor.RESET + ChatColor.GOLD + "₿");
+                    sender.sendMessage(ChatColor.GREEN + args[1] + " has " + ChatColor.GOLD + ChatColor.BOLD + Crypto.formatBitcoin(data.crypto()) + ChatColor.RESET + ChatColor.GOLD + "₿");
                 } else {
                     sender.sendMessage(ChatColor.RED + "Player not found");
                 }
