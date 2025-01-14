@@ -6,3 +6,6 @@ authors: [ Aznos ]
 
 commands:
   crypto:
+
+depend:
+  vault

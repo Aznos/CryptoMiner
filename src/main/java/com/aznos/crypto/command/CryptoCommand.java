@@ -1,9 +1,9 @@
 package com.aznos.crypto.command;
 
 import com.aznos.crypto.Crypto;
+import com.aznos.crypto.data.PlayerData;
 import com.aznos.crypto.data.miners.GT1030;
 import com.aznos.crypto.db.Database;
-import com.aznos.crypto.data.PlayerData;
 import com.aznos.crypto.ui.MinerUI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -34,38 +34,45 @@ public class CryptoCommand implements CommandExecutor {
             }
         } else if(args[0].equalsIgnoreCase("miners") || args[0].equalsIgnoreCase("miner")) {
             if(sender instanceof Player player) {
-                new MinerUI(player);
-            } else {
-                sender.sendMessage("You must be a player to use this command");
-            }
-        } else if(args[0].equalsIgnoreCase("purchase") || args[0].equalsIgnoreCase("buy")) {
-            if(sender instanceof Player player) {
-                if(args.length == 2) {
-                    if(args[1].equalsIgnoreCase("GT-1030")) {
-                        GT1030 miner = new GT1030();
-                        PlayerData data = Database.fetchPlayerData(player.getUniqueId());
-                        if(data.crypto() >= miner.getCost()) {
-                            String inventory = data.inventory();
-                            inventory += "GT-1030,";
+                if(args.length == 1) {
+                    new MinerUI(player);
+                } else if(args.length == 3) {
+                    if(args[1].equalsIgnoreCase("purchase") || args[1].equalsIgnoreCase("buy")) {
+                        if(args[2].equalsIgnoreCase("GT-1030")) {
+                            GT1030 miner = new GT1030();
+                            PlayerData data = Database.fetchPlayerData(player.getUniqueId());
+                            if(data.crypto() >= miner.getCost()) {
+                                String inventory = data.inventory();
+                                inventory += "GT-1030,";
 
-                            data = new PlayerData(inventory, data.crypto() - miner.getCost());
-                            Database.savePlayerData(player.getUniqueId(), data.inventory(), data.crypto());
-                            player.sendMessage(ChatColor.GREEN + "You have purchased a GT-1030 miner for " + miner.getCost() + "₿");
+                                data = new PlayerData(inventory, data.crypto() - miner.getCost());
+                                Database.savePlayerData(player.getUniqueId(), data.inventory(), data.crypto());
+                                player.sendMessage(ChatColor.GREEN + "You have purchased a GT-1030 miner for " + miner.getCost() + "₿");
+                            } else {
+                                player.sendMessage(ChatColor.RED + "You do not have enough ₿ to purchase this miner");
+                            }
                         } else {
-                            player.sendMessage(ChatColor.RED + "You do not have enough ₿ to purchase this miner");
+                            player.sendMessage(ChatColor.RED + "Invalid subcommand");
                         }
                     } else {
                         player.sendMessage(ChatColor.RED + "Invalid subcommand");
                     }
                 } else {
-                    player.sendMessage(ChatColor.RED + "Usage: /crypto purchase <miner>");
+                    player.sendMessage(ChatColor.RED + "Invalid subcommand");
                 }
             } else {
                 sender.sendMessage("You must be a player to use this command");
             }
-        }
-        
-        else {
+        } else if(args[0].equalsIgnoreCase("purchase") || args[0].equalsIgnoreCase("buy")) {
+            if(sender instanceof Player player) {
+                double amount = Double.parseDouble(args[1]);
+                PlayerData data = Database.fetchPlayerData(player.getUniqueId());
+
+
+            } else {
+                sender.sendMessage("You must be a player to use this command");
+            }
+        } else {
             sender.sendMessage(ChatColor.RED + "Invalid subcommand");
         }
 

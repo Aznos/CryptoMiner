@@ -23,6 +23,8 @@ public final class Crypto extends JavaPlugin {
     public static final Map<String, Miner> MINERS = new HashMap<>();
     public static Crypto INSTANCE;
 
+    public static final int BTC_TO_USD = 92_000;
+
     @Override
     public void onEnable() {
         INSTANCE = this;
@@ -83,10 +85,9 @@ public final class Crypto extends JavaPlugin {
         double blockReward = 6.25;
         int blocksPerDay = 144;
         double electricityRate = 0.0001;
-        double bitcoinPrice = 92_000;
 
         double grossRevenue = (hashRate / networkHashRate) * blockReward * blocksPerDay;
-        double electricityCost = (powerConsumption * electricityRate) / bitcoinPrice;
+        double electricityCost = (powerConsumption * electricityRate) / BTC_TO_USD;
         double netRevenue = grossRevenue - electricityCost;
 
         return Math.max(netRevenue, 0.00000001);
