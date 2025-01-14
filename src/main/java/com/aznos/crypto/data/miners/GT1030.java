@@ -11,7 +11,7 @@ import java.util.List;
 
 public class GT1030 extends Miner {
     public GT1030() {
-        super("GT 1030", 6.8, 30, 0);
+        super("GT 1030", 6.8, 30, 50);
     }
 
     public static ItemStack getItemStack() {
@@ -24,7 +24,7 @@ public class GT1030 extends Miner {
                 ChatColor.GRAY + "Revenue/D: " + ChatColor.GREEN + Crypto.formatBitcoin(Crypto.calculateRevenue(6.8, 30)) + "₿",
                 ChatColor.GRAY + "Hash Rate: " + ChatColor.GOLD + "6.8H/s",
                 ChatColor.GRAY + "Power Consumption: " + ChatColor.GOLD + "30W",
-                ChatColor.GRAY + "Sell Price: " + ChatColor.GOLD + getSellPrice(0)
+                ChatColor.GRAY + "Sell Price: " + ChatColor.GOLD + getSellPrice(50)
         );
 
         meta.setLore(lore);

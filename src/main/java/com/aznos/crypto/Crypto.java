@@ -6,9 +6,11 @@ import com.aznos.crypto.data.PlayerData;
 import com.aznos.crypto.data.miners.GT1030;
 import com.aznos.crypto.db.Database;
 import com.aznos.crypto.tab.CryptoCommandTab;
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.SQLException;
@@ -22,6 +24,7 @@ import static com.aznos.crypto.db.Database.initDB;
 public final class Crypto extends JavaPlugin {
     public static final Map<String, Miner> MINERS = new HashMap<>();
     public static Crypto INSTANCE;
+    public static Economy economy = null;
 
     public static final int BTC_TO_USD = 92_000;
 
@@ -32,6 +35,10 @@ public final class Crypto extends JavaPlugin {
         initDB();
 
         registerMiners();
+        if(!setupEconomy()) {
+            getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
 
         Bukkit.getScheduler().runTaskTimer(this, () -> {
             getLogger().info("Giving out crypto mining revenue to players");
@@ -68,6 +75,23 @@ public final class Crypto extends JavaPlugin {
                 getLogger().warning("Failed to close database connection");
             }
         }
+    }
+
+    private boolean setupEconomy() {
+        if(getServer().getPluginManager().getPlugin("Vault") == null) {
+            getLogger().severe("Vault plugin not found!");
+            return false;
+        }
+
+        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
+        if(rsp == null) {
+            getLogger().severe("Economy provider not found. Please install an economy plugin like EssentialsX");
+            return false;
+        }
+
+        economy = rsp.getProvider();
+        getLogger().info("Economy provider found: " + economy.getName());
+        return true;
     }
 
     private void makeDataFolder() {

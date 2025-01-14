@@ -41,15 +41,15 @@ public class CryptoCommand implements CommandExecutor {
                         if(args[2].equalsIgnoreCase("GT-1030")) {
                             GT1030 miner = new GT1030();
                             PlayerData data = Database.fetchPlayerData(player.getUniqueId());
-                            if(data.crypto() >= miner.getCost()) {
-                                String inventory = data.inventory();
-                                inventory += "GT-1030,";
+                            double balance = Crypto.economy.getBalance(player);
 
-                                data = new PlayerData(inventory, data.crypto() - miner.getCost());
+                            if(balance >= miner.getCost()) {
+                                data = new PlayerData(data.inventory() + "GT-1030,", data.crypto());
                                 Database.savePlayerData(player.getUniqueId(), data.inventory(), data.crypto());
-                                player.sendMessage(ChatColor.GREEN + "You have purchased a GT-1030 miner for " + miner.getCost() + "₿");
+                                Crypto.economy.withdrawPlayer(player, miner.getCost());
+                                player.sendMessage(ChatColor.GREEN + "You have purchased a GT-1030 miner for " + ChatColor.GOLD + ChatColor.BOLD + miner.getCost() + ChatColor.RESET + ChatColor.GREEN + "$");
                             } else {
-                                player.sendMessage(ChatColor.RED + "You do not have enough ₿ to purchase this miner");
+                                player.sendMessage(ChatColor.RED + "You do not have enough money to purchase a GT-1030 miner");
                             }
                         } else {
                             player.sendMessage(ChatColor.RED + "Invalid subcommand");
@@ -60,15 +60,6 @@ public class CryptoCommand implements CommandExecutor {
                 } else {
                     player.sendMessage(ChatColor.RED + "Invalid subcommand");
                 }
-            } else {
-                sender.sendMessage("You must be a player to use this command");
-            }
-        } else if(args[0].equalsIgnoreCase("purchase") || args[0].equalsIgnoreCase("buy")) {
-            if(sender instanceof Player player) {
-                double amount = Double.parseDouble(args[1]);
-                PlayerData data = Database.fetchPlayerData(player.getUniqueId());
-
-
             } else {
                 sender.sendMessage("You must be a player to use this command");
             }
