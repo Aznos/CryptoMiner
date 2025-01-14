@@ -1,6 +1,7 @@
 package com.aznos.crypto.db;
 
 import com.aznos.crypto.Crypto;
+import com.aznos.crypto.data.PlayerData;
 import org.bukkit.Bukkit;
 
 import java.sql.*;
