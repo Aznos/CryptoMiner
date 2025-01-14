@@ -47,7 +47,7 @@ public class Database {
         }
     }
 
-    public static void fetchPlayerData(UUID uuid) {
+    public static PlayerData fetchPlayerData(UUID uuid) {
         String id = uuid.toString();
         String selectQuery = "SELECT inventory, crypto FROM player_data WHERE id = ?";
 
@@ -58,11 +58,15 @@ public class Database {
             if(rs.next()) {
                 String inventory = rs.getString("inventory");
                 double crypto = rs.getDouble("crypto");
+
+                return new PlayerData(inventory, crypto);
             } else {
                 Bukkit.getLogger().warning("No data found for player " + Bukkit.getPlayer(uuid) + ", yet it was requested");
             }
         } catch(SQLException e) {
             Bukkit.getLogger().severe("Failed to fetch player data for " + Bukkit.getPlayer(uuid));
         }
+
+        return new PlayerData("", 0);
     }
 }

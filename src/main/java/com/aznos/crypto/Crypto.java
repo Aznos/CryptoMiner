@@ -1,5 +1,6 @@
 package com.aznos.crypto;
 
+import com.aznos.crypto.command.CryptoCommand;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.SQLException;
@@ -13,7 +14,10 @@ public final class Crypto extends JavaPlugin {
     @Override
     public void onEnable() {
         INSTANCE = this;
+        makeDataFolder();
         initDB();
+
+        getCommand("crypto").setExecutor(new CryptoCommand());
     }
 
     @Override
@@ -24,6 +28,12 @@ public final class Crypto extends JavaPlugin {
             } catch(SQLException e) {
                 getLogger().warning("Failed to close database connection");
             }
+        }
+    }
+
+    private void makeDataFolder() {
+        if(!getDataFolder().exists()) {
+            getDataFolder().mkdir();
         }
     }
 }

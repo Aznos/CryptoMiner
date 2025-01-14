@@ -3,3 +3,6 @@ version: '0.0.1'
 main: com.aznos.crypto.Crypto
 api-version: '1.21'
 authors: [ Aznos ]
+
+commands:
+  crypto:
