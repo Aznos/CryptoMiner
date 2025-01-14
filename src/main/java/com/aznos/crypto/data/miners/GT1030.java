@@ -20,14 +20,23 @@ public class GT1030 extends Miner {
 
         List<String> lore = List.of(
                 ChatColor.GRAY + "Manufacturer: " + ChatColor.GREEN + "Nvidia",
-                ChatColor.GRAY + "Hash Rate: " + ChatColor.GOLD + "0.5",
-                ChatColor.GRAY + "Power Consumption: " + ChatColor.GOLD + "30",
-                ChatColor.GRAY + "Cost: " + ChatColor.GOLD + "0"
+                ChatColor.GRAY + "Revenue/D: " + ChatColor.GREEN + getRevenue() + "₿",
+                ChatColor.GRAY + "Hash Rate: " + ChatColor.GOLD + "6.8H/s",
+                ChatColor.GRAY + "Power Consumption: " + ChatColor.GOLD + "30W",
+                ChatColor.GRAY + "Sell Price: " + ChatColor.GOLD + getSellPrice(0)
         );
 
         meta.setLore(lore);
         stack.setItemMeta(meta);
 
         return stack;
+    }
+
+    public static double getRevenue() {
+        return 0.01;
+    }
+
+    private static double getSellPrice(int buyPrice) {
+        return buyPrice * 0.6;
     }
 }

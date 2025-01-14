@@ -14,8 +14,8 @@ public class MinerUI {
         PlayerData data = Database.fetchPlayerData(player.getUniqueId());
         String inventory = data.inventory();
 
-        for(String miner : inventory.split(",")) {
-            if(miner.equals("GT-1030")) {
+        for(String miner : inventory.trim().split(",")) {
+            if(miner.equalsIgnoreCase("GT-1030")) {
                 inv.addItem(GT1030.getItemStack());
             }
         }

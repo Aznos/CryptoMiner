@@ -43,6 +43,7 @@ public class Database {
             stmt.setString(1, id);
             stmt.setString(2, inventory);
             stmt.setDouble(3, crypto);
+            stmt.executeUpdate();
         } catch(SQLException e) {
             Bukkit.getLogger().severe("Failed to save player data for " + Bukkit.getPlayer(uuid));
         }
