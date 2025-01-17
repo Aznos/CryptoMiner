@@ -1,5 +1,6 @@
 package com.aznos.crypto;
 
+import com.aznos.crypto.bitcoin.BitcoinPrice;
 import com.aznos.crypto.command.CryptoCommand;
 import com.aznos.crypto.data.Miner;
 import com.aznos.crypto.data.PlayerData;
@@ -27,7 +28,7 @@ public final class Crypto extends JavaPlugin {
     public static Crypto INSTANCE;
     public static Economy economy = null;
 
-    public static final int BTC_TO_USD = 92_000;
+    public static double BTC_TO_USD = 92_000;
 
     @Override
     public void onEnable() {
@@ -62,6 +63,10 @@ public final class Crypto extends JavaPlugin {
                 }
             }
         }, 100, 100);
+
+        Bukkit.getScheduler().runTaskTimer(this, () -> {
+            BTC_TO_USD = BitcoinPrice.getBTCPrice();
+        }, 20, 20 * 60);
 
         getCommand("crypto").setExecutor(new CryptoCommand());
         getCommand("crypto").setTabCompleter(new CryptoCommandTab());
