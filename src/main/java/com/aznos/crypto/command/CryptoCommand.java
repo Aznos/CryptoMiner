@@ -6,6 +6,7 @@ import com.aznos.crypto.data.PlayerData;
 import com.aznos.crypto.db.Database;
 import com.aznos.crypto.ui.MinerUI;
 import com.aznos.crypto.util.Conversions;
+import com.aznos.crypto.util.Formatting;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -21,14 +22,14 @@ public class CryptoCommand implements CommandExecutor {
             if(args.length == 1) {
                 if(sender instanceof Player player) {
                     PlayerData data = Database.fetchPlayerData(player.getUniqueId());
-                    player.sendMessage(ChatColor.GREEN + "You have " + ChatColor.GOLD + ChatColor.BOLD + Crypto.formatBitcoin(data.crypto()) + ChatColor.RESET + ChatColor.GOLD + "₿");
+                    player.sendMessage(ChatColor.GREEN + "You have " + ChatColor.GOLD + ChatColor.BOLD + Formatting.formatBitcoin(data.crypto()) + ChatColor.RESET + ChatColor.GOLD + "₿");
                 } else {
                     sender.sendMessage("You must be a player to use this command");
                 }
             } else {
                 if(Bukkit.getOfflinePlayer(args[1]).hasPlayedBefore()) {
                     PlayerData data = Database.fetchPlayerData(Bukkit.getOfflinePlayer(args[1]).getUniqueId());
-                    sender.sendMessage(ChatColor.GREEN + args[1] + " has " + ChatColor.GOLD + ChatColor.BOLD + Crypto.formatBitcoin(data.crypto()) + ChatColor.RESET + ChatColor.GOLD + "₿");
+                    sender.sendMessage(ChatColor.GREEN + args[1] + " has " + ChatColor.GOLD + ChatColor.BOLD + Formatting.formatBitcoin(data.crypto()) + ChatColor.RESET + ChatColor.GOLD + "₿");
                 } else {
                     sender.sendMessage(ChatColor.RED + "Player not found");
                 }

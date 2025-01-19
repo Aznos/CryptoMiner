@@ -1,6 +1,6 @@
 package com.aznos.crypto.data;
 
-import com.aznos.crypto.Crypto;
+import com.aznos.crypto.util.Revenue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.bukkit.Material;
@@ -28,7 +28,7 @@ public class Miner {
     }
 
     public ItemStack getItemStack() {
-        double revenue = Crypto.calculateRevenue(hashRate, powerConsumption);
+        double revenue = Revenue.calculateRevenue(hashRate, powerConsumption);
 
         ItemStack stack = new ItemStack(getMaterial());
         ItemMeta meta = stack.getItemMeta();

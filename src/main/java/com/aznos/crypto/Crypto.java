@@ -7,6 +7,8 @@ import com.aznos.crypto.data.PlayerData;
 import com.aznos.crypto.db.Database;
 import com.aznos.crypto.listener.InventoryClick;
 import com.aznos.crypto.tab.CryptoCommandTab;
+import com.aznos.crypto.util.Formatting;
+import com.aznos.crypto.util.Revenue;
 import com.google.gson.Gson;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
@@ -19,7 +21,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.Reader;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -56,7 +57,7 @@ public final class Crypto extends JavaPlugin {
                 for(String minerName : inventory.trim().split(",")) {
                     Miner miner = MINERS.get(minerName);
                     if(miner != null) {
-                        double revenue = calculateRevenue(miner.getHashRate(), miner.getPowerConsumption());
+                        double revenue = Revenue.calculateRevenue(miner.getHashRate(), miner.getPowerConsumption());
                         data = new PlayerData(inventory, data.crypto() + revenue);
                         Database.savePlayerData(player.getUniqueId(), data.inventory(), data.crypto());
                         revenueEarnedFromMiners += revenue;
@@ -64,7 +65,7 @@ public final class Crypto extends JavaPlugin {
                 }
 
                 if(revenueEarnedFromMiners > 0) {
-                    player.sendMessage(ChatColor.GREEN + "You have earned " + ChatColor.GOLD + ChatColor.BOLD + formatBitcoin(revenueEarnedFromMiners) + ChatColor.RESET + ChatColor.GOLD + "₿ from your miners");
+                    player.sendMessage(ChatColor.GREEN + "You have earned " + ChatColor.GOLD + ChatColor.BOLD + Formatting.formatBitcoin(revenueEarnedFromMiners) + ChatColor.RESET + ChatColor.GOLD + "₿ from your miners");
                 }
             }
         }, 100, 100);
@@ -130,23 +131,5 @@ public final class Crypto extends JavaPlugin {
         } catch(Exception e) {
             getLogger().severe("Failed to load miners.json");
         }
-    }
-
-    public static double calculateRevenue(double hashRate, double powerConsumption) {
-        double networkHashRate = 400e18; //400 EH/s
-        double blockReward = 6.25;
-        int blocksPerDay = 144;
-        double electricityRate = 0.0001;
-
-        double grossRevenue = (hashRate / networkHashRate) * blockReward * blocksPerDay;
-        double electricityCost = (powerConsumption * electricityRate) / BTC_TO_USD;
-        double netRevenue = grossRevenue - electricityCost;
-
-        return Math.max(netRevenue, 0.00000001);
-    }
-
-    public static String formatBitcoin(double value) {
-        DecimalFormat df = new DecimalFormat("0.00000000");
-        return df.format(value);
     }
 }
