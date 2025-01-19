@@ -1,0 +1,10 @@
+[
+  {
+    "name": "GT-1030",
+    "manufacturer": "Nvidia",
+    "hashRate": 6.8,
+    "powerConsumption": 30,
+    "cost": 20,
+    "material": "DIRT"
+  }
+]

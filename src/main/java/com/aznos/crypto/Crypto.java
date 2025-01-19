@@ -4,10 +4,10 @@ import com.aznos.crypto.bitcoin.BitcoinPrice;
 import com.aznos.crypto.command.CryptoCommand;
 import com.aznos.crypto.data.Miner;
 import com.aznos.crypto.data.PlayerData;
-import com.aznos.crypto.data.miners.GT1030;
 import com.aznos.crypto.db.Database;
 import com.aznos.crypto.listener.InventoryClick;
 import com.aznos.crypto.tab.CryptoCommandTab;
+import com.google.gson.Gson;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -15,6 +15,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.Reader;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.HashMap;
@@ -50,11 +53,13 @@ public final class Crypto extends JavaPlugin {
                 PlayerData data = Database.fetchPlayerData(player.getUniqueId());
                 String inventory = data.inventory();
 
-                for(String miner : inventory.trim().split(",")) {
-                    if(miner.equalsIgnoreCase("GT-1030")) {
-                        data = new PlayerData(inventory, data.crypto() + calculateRevenue(MINERS.get("GT-1030").getHashRate(), MINERS.get("GT-1030").getPowerConsumption()));
+                for(String minerName : inventory.trim().split(",")) {
+                    Miner miner = MINERS.get(minerName);
+                    if(miner != null) {
+                        double revenue = calculateRevenue(miner.getHashRate(), miner.getPowerConsumption());
+                        data = new PlayerData(inventory, data.crypto() + revenue);
                         Database.savePlayerData(player.getUniqueId(), data.inventory(), data.crypto());
-                        revenueEarnedFromMiners += calculateRevenue(MINERS.get("GT-1030").getHashRate(), MINERS.get("GT-1030").getPowerConsumption());
+                        revenueEarnedFromMiners += revenue;
                     }
                 }
 
@@ -109,7 +114,22 @@ public final class Crypto extends JavaPlugin {
     }
 
     private void registerMiners() {
-        MINERS.put("GT-1030", new GT1030());
+        try {
+            File minersFile = new File(getDataFolder(), "miners.json");
+            if(!minersFile.exists()) saveResource("miners.json", false);
+
+            Gson gson = new Gson();
+            Reader reader = new FileReader(minersFile);
+            Miner[] miners = gson.fromJson(reader, Miner[].class);
+
+            for(Miner miner : miners) {
+                MINERS.put(miner.getName(), miner);
+            }
+
+            getLogger().info("Loaded " + MINERS.size() + " miners from configuration file");
+        } catch(Exception e) {
+            getLogger().severe("Failed to load miners.json");
+        }
     }
 
     public static double calculateRevenue(double hashRate, double powerConsumption) {

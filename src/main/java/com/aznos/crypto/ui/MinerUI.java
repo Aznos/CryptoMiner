@@ -1,7 +1,7 @@
 package com.aznos.crypto.ui;
 
+import com.aznos.crypto.Crypto;
 import com.aznos.crypto.data.PlayerData;
-import com.aznos.crypto.data.miners.GT1030;
 import com.aznos.crypto.db.Database;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -16,7 +16,7 @@ public class MinerUI {
 
         for(String miner : inventory.trim().split(",")) {
             if(miner.equalsIgnoreCase("GT-1030")) {
-                inv.addItem(GT1030.getItemStack());
+                inv.addItem(Crypto.MINERS.get("GT-1030").getItemStack());
             }
         }
 

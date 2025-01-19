@@ -30,6 +30,8 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.36'
 
     implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.16.0'
+
+    implementation 'com.google.code.gson:gson:2.10.1'
 }
 
 def targetJavaVersion = 21
