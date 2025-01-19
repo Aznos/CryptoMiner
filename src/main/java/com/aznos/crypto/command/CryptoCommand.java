@@ -1,6 +1,7 @@
 package com.aznos.crypto.command;
 
 import com.aznos.crypto.Crypto;
+import com.aznos.crypto.data.Miner;
 import com.aznos.crypto.data.PlayerData;
 import com.aznos.crypto.db.Database;
 import com.aznos.crypto.ui.MinerUI;
@@ -38,15 +39,18 @@ public class CryptoCommand implements CommandExecutor {
                     new MinerUI(player);
                 } else if(args.length == 3) {
                     if(args[1].equalsIgnoreCase("purchase") || args[1].equalsIgnoreCase("buy")) {
-                        if(args[2].equalsIgnoreCase("GT-1030")) {
+                        String minerName = args[2];
+                        Miner miner = Crypto.MINERS.get(minerName);
+
+                        if(miner != null) {
                             PlayerData data = Database.fetchPlayerData(player.getUniqueId());
                             double balance = Crypto.economy.getBalance(player);
 
-                            if(balance >= Crypto.MINERS.get("GT-1030").getCost()) {
-                                data = new PlayerData(data.inventory() + "GT-1030,", data.crypto());
+                            if(balance >= miner.getCost()) {
+                                data = new PlayerData(data.inventory() + miner.getName().toUpperCase() + ',', data.crypto());
                                 Database.savePlayerData(player.getUniqueId(), data.inventory(), data.crypto());
-                                Crypto.economy.withdrawPlayer(player,  Crypto.MINERS.get("GT-1030").getCost());
-                                player.sendMessage(ChatColor.GREEN + "You have purchased a GT-1030 miner for " + ChatColor.GOLD + ChatColor.BOLD +  Crypto.MINERS.get("GT-1030").getCost() + ChatColor.RESET + ChatColor.GREEN + "$");
+                                Crypto.economy.withdrawPlayer(player,  miner.getCost());
+                                player.sendMessage(ChatColor.GREEN + "You have purchased a " + miner.getName() + " miner for " + ChatColor.GOLD + ChatColor.BOLD + miner.getCost() + ChatColor.RESET + ChatColor.GREEN + "$");
                             } else {
                                 player.sendMessage(ChatColor.RED + "You do not have enough money to purchase a GT-1030 miner");
                             }
