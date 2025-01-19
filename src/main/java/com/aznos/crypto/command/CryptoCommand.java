@@ -52,7 +52,7 @@ public class CryptoCommand implements CommandExecutor {
                                 Crypto.economy.withdrawPlayer(player,  miner.getCost());
                                 player.sendMessage(ChatColor.GREEN + "You have purchased a " + miner.getName() + " miner for " + ChatColor.GOLD + ChatColor.BOLD + miner.getCost() + ChatColor.RESET + ChatColor.GREEN + "$");
                             } else {
-                                player.sendMessage(ChatColor.RED + "You do not have enough money to purchase a GT-1030 miner");
+                                player.sendMessage(ChatColor.RED + "You do not have enough money to purchase a " + miner.getName() + " miner");
                             }
                         } else {
                             player.sendMessage(ChatColor.RED + "Invalid subcommand");

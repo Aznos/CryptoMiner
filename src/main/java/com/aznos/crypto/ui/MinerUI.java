@@ -1,6 +1,7 @@
 package com.aznos.crypto.ui;
 
 import com.aznos.crypto.Crypto;
+import com.aznos.crypto.data.Miner;
 import com.aznos.crypto.data.PlayerData;
 import com.aznos.crypto.db.Database;
 import org.bukkit.Bukkit;
@@ -14,9 +15,10 @@ public class MinerUI {
         PlayerData data = Database.fetchPlayerData(player.getUniqueId());
         String inventory = data.inventory();
 
-        for(String miner : inventory.trim().split(",")) {
-            if(miner.equalsIgnoreCase("GT-1030")) {
-                inv.addItem(Crypto.MINERS.get("GT-1030").getItemStack());
+        for(String minerName : inventory.trim().split(",")) {
+            Miner miner = Crypto.MINERS.get(minerName);
+            if(miner != null) {
+                inv.addItem(miner.getItemStack());
             }
         }
 
