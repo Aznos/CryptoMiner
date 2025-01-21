@@ -24,7 +24,9 @@ public class CryptoCommand implements CommandExecutor {
             if(args.length == 1) {
                 if(sender instanceof Player player) {
                     PlayerData data = Database.fetchPlayerData(player.getUniqueId());
+                    DecimalFormat df = new DecimalFormat("#,###.00");
                     player.sendMessage(ChatColor.GREEN + "You have " + ChatColor.GOLD + ChatColor.BOLD + Formatting.formatBitcoin(data.crypto()) + ChatColor.RESET + ChatColor.GOLD + "₿");
+                    player.sendMessage(ChatColor.GOLD + "This translates to " + ChatColor.GREEN + "$" + df.format(Conversions.btcToUSD(data.crypto())));
                 } else {
                     sender.sendMessage("You must be a player to use this command");
                 }

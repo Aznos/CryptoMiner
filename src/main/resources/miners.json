@@ -2,9 +2,241 @@
   {
     "name": "GT-1030",
     "manufacturer": "Nvidia",
-    "hashRate": 6.8,
+    "hashRate": 1800,
     "powerConsumption": 30,
-    "cost": 20,
+    "cost": 52,
     "material": "DIRT"
+  },
+  {
+    "name": "GTX-1060",
+    "manufacturer": "Nvidia",
+    "hashRate": 9000,
+    "powerConsumption": 120,
+    "cost": 260,
+    "material": "ROOTED_DIRT"
+  },
+  {
+    "name": "GTX-1070Ti",
+    "manufacturer": "Nvidia",
+    "hashRate": 13330,
+    "powerConsumption": 180,
+    "cost": 430,
+    "material": "COBBLESTONE"
+  },
+  {
+    "name": "GTX-1080",
+    "manufacturer": "Nvidia",
+    "hashRate": 15200,
+    "powerConsumption": 180,
+    "cost": 510,
+    "material": "STONE"
+  },
+  {
+    "name": "RX-580",
+    "manufacturer": "AMD",
+    "hashRate": 12800,
+    "powerConsumption": 150,
+    "cost": 150,
+    "material": "GRANITE"
+  },
+  {
+    "name": "GTX-1660S",
+    "manufacturer": "Nvidia",
+    "hashRate": 14300,
+    "powerConsumption": 125,
+    "cost": 229,
+    "material": "DIORITE"
+  },
+  {
+    "name": "RTX-2060",
+    "manufacturer": "Nvidia",
+    "hashRate": 18000,
+    "powerConsumption": 130,
+    "cost": 301,
+    "material": "ANDESITE"
+  },
+  {
+    "name": "RX-5600XT",
+    "manufacturer": "AMD",
+    "hashRate": 18500,
+    "powerConsumption": 130,
+    "cost": 540,
+    "material": "GRASS_BLOCK"
+  },
+  {
+    "name": "RTX-3060",
+    "manufacturer": "Nvidia",
+    "hashRate": 22000,
+    "powerConsumption": 140,
+    "cost": 285,
+    "material": "GRAY_WOOL"
+  },
+  {
+    "name": "RX-5700XT",
+    "manufacturer": "AMD",
+    "hashRate": 25000,
+    "powerConsumption": 160,
+    "cost": 490,
+    "material": "WHITE_WOOL"
+  },
+  {
+    "name": "RTX-3060Ti",
+    "manufacturer": "Nvidia",
+    "hashRate": 30000,
+    "powerConsumption": 200,
+    "cost": 450,
+    "material": "RED_WOOL"
+  },
+  {
+    "name": "RX-6700XT",
+    "manufacturer": "AMD",
+    "hashRate": 33000,
+    "powerConsumption": 230,
+    "cost": 600,
+    "material": "ORANGE_WOOL"
+  },
+  {
+    "name": "RTX-3070",
+    "manufacturer": "Nvidia",
+    "hashRate": 40000,
+    "powerConsumption": 220,
+    "cost": 620,
+    "material": "YELLOW_WOOL"
+  },
+  {
+    "name": "RX-6800",
+    "manufacturer": "AMD",
+    "hashRate": 42000,
+    "powerConsumption": 250,
+    "cost": 650,
+    "material": "GREEN_WOOL"
+  },
+  {
+    "name": "RTX-3080",
+    "manufacturer": "Nvidia",
+    "hashRate": 50000,
+    "powerConsumption": 320,
+    "cost": 890,
+    "material": "BLUE_WOOL"
+  },
+  {
+    "name": "RX-6900XT",
+    "manufacturer": "AMD",
+    "hashRate": 52000,
+    "powerConsumption": 300,
+    "cost": 999,
+    "material": "PURPLE_WOOL"
+  },
+  {
+    "name": "RTX-3080Ti",
+    "manufacturer": "Nvidia",
+    "hashRate": 57000,
+    "powerConsumption": 350,
+    "cost": 1199,
+    "material": "RED_SANDSTONE"
+  },
+  {
+    "name": "RTX-3090",
+    "manufacturer": "Nvidia",
+    "hashRate": 60000,
+    "powerConsumption": 360,
+    "cost": 1499,
+    "material": "NETHER_BRICKS"
+  },
+  {
+    "name": "RX-7900XT",
+    "manufacturer": "AMD",
+    "hashRate": 63000,
+    "powerConsumption": 340,
+    "cost": 1250,
+    "material": "CRIMSON_HYPHAE"
+  },
+  {
+    "name": "RTX-3090Ti",
+    "manufacturer": "Nvidia",
+    "hashRate": 65000,
+    "powerConsumption": 400,
+    "cost": 1999,
+    "material": "BASALT"
+  },
+  {
+    "name": "RX-7900XTX",
+    "manufacturer": "AMD",
+    "hashRate": 68000,
+    "powerConsumption": 380,
+    "cost": 1350,
+    "material": "BLACKSTONE"
+  },
+  {
+    "name": "RTX-4070",
+    "manufacturer": "Nvidia",
+    "hashRate": 70000,
+    "powerConsumption": 300,
+    "cost": 699,
+    "material": "CALCITE"
+  },
+  {
+    "name": "RX-7800XT",
+    "manufacturer": "AMD",
+    "hashRate": 72000,
+    "powerConsumption": 320,
+    "cost": 649,
+    "material": "DEEPSLATE"
+  },
+  {
+    "name": "RTX-4070Ti",
+    "manufacturer": "Nvidia",
+    "hashRate": 74000,
+    "powerConsumption": 350,
+    "cost": 799,
+    "material": "TUFF"
+  },
+  {
+    "name": "RX-7700XT",
+    "manufacturer": "AMD",
+    "hashRate": 76000,
+    "powerConsumption": 330,
+    "cost": 599,
+    "material": "MUD"
+  },
+  {
+    "name": "RTX-4080",
+    "manufacturer": "Nvidia",
+    "hashRate": 80000,
+    "powerConsumption": 450,
+    "cost": 1199,
+    "material": "DRIPSTONE_BLOCK"
+  },
+  {
+    "name": "RX-7600XT",
+    "manufacturer": "AMD",
+    "hashRate": 82000,
+    "powerConsumption": 290,
+    "cost": 499,
+    "material": "SPRUCE_LOG"
+  },
+  {
+    "name": "RTX-4080Ti",
+    "manufacturer": "Nvidia",
+    "hashRate": 86000,
+    "powerConsumption": 480,
+    "cost": 1499,
+    "material": "MANGROVE_ROOTS"
+  },
+  {
+    "name": "RX-8500XT",
+    "manufacturer": "AMD",
+    "hashRate": 88000,
+    "powerConsumption": 350,
+    "cost": 1599,
+    "material": "WARPED_PLANKS"
+  },
+  {
+    "name": "RTX-4090",
+    "manufacturer": "Nvidia",
+    "hashRate": 100000,
+    "powerConsumption": 500,
+    "cost": 1999,
+    "material": "END_STONE"
   }
 ]
