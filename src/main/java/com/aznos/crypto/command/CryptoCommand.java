@@ -109,6 +109,8 @@ public class CryptoCommand implements CommandExecutor {
             } else {
                 sender.sendMessage("You must be a player to use this command");
             }
+        } else if(args[0].equalsIgnoreCase("price")) {
+            sender.sendMessage(ChatColor.GOLD + ChatColor.BOLD.toString() + "1₿" + ChatColor.RESET + ChatColor.GOLD + " is currently worth " + ChatColor.GREEN + ChatColor.BOLD + "$" + Crypto.BTC_TO_USD);
         } else {
             sender.sendMessage(ChatColor.RED + "Invalid subcommand");
         }
