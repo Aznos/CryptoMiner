@@ -69,7 +69,7 @@ public final class Crypto extends JavaPlugin {
                     player.sendMessage(ChatColor.GREEN + "You have earned " + ChatColor.GOLD + ChatColor.BOLD + Formatting.formatBitcoin(revenueEarnedFromMiners) + ChatColor.RESET + ChatColor.GOLD + "₿ from your miners");
                 }
             }
-        }, 100, 100);
+        }, 24000, 24000);
 
         Bukkit.getScheduler().runTaskTimer(this, () -> {
             BTC_TO_USD = BitcoinPrice.getBTCPrice();

@@ -40,14 +40,6 @@
     "material": "STONE"
   },
   {
-    "name": "GTX-1660",
-    "manufacturer": "Nvidia",
-    "hashRate": 10800000,
-    "powerConsumption": 120,
-    "cost": 205,
-    "material": "STONE"
-  },
-  {
     "name": "GTX-1660S",
     "manufacturer": "Nvidia",
     "hashRate": 13800000,
@@ -78,14 +70,6 @@
     "powerConsumption": 180,
     "cost": 220,
     "material": "DIORITE"
-  },
-  {
-    "name": "GTX-1080Ti",
-    "manufacturer": "Nvidia",
-    "hashRate": 26700000,
-    "powerConsumption": 250,
-    "cost": 400,
-    "material": "GRANITE"
   },
   {
     "name": "GTX-1080Ti",
@@ -220,14 +204,6 @@
     "material": "JUNGLE_LOG"
   },
   {
-    "name": "R9-390",
-    "manufacturer": "AMD",
-    "hashRate": 2000000,
-    "powerConsumption": 275,
-    "cost": 120,
-    "material": "JUNGLE_LOG"
-  },
-  {
     "name": "R9-460",
     "manufacturer": "AMD",
     "hashRate": 3000000,
@@ -258,14 +234,6 @@
     "powerConsumption": 150,
     "cost": 200,
     "material": "ORANGE_TERRACOTTA"
-  },
-  {
-    "name": "RX-5600",
-    "manufacturer": "AMD",
-    "hashRate": 10800000,
-    "powerConsumption": 150,
-    "cost": 200,
-    "material": "WHITE_TERRACOTTA"
   },
   {
     "name": "RX-5700XT-8GB",
