@@ -4,15 +4,16 @@ import com.aznos.crypto.Crypto;
 
 public class Revenue {
     public static double calculateRevenue(double hashRate, double powerConsumption) {
-        double networkHashRate = 400e18; //400 EH/s
+        double networkHashRate = 900e12; // 900 TH/s
         double blockReward = 6.25;
         int blocksPerDay = 144;
-        double electricityRate = 0.0001;
+        double electricityRate = 0.1;
+        double btcToUsd = Crypto.BTC_TO_USD;
 
-        double grossRevenue = (hashRate / networkHashRate) * blockReward * blocksPerDay;
-        double electricityCost = (powerConsumption * electricityRate) / Crypto.BTC_TO_USD;
-        double netRevenue = grossRevenue - electricityCost;
+        double grossRevenueBTC = (hashRate / networkHashRate) * blockReward * blocksPerDay;
+        double electricityCostBTC = ((powerConsumption * 24) / 1000.0) * electricityRate / btcToUsd;
+        double netRevenueBTC = grossRevenueBTC - electricityCostBTC;
 
-        return Math.max(netRevenue, 0.00000001);
+        return Math.max(netRevenueBTC, 0.00000001);
     }
 }
