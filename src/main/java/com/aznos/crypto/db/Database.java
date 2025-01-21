@@ -71,4 +71,32 @@ public class Database {
 
         return new PlayerData("", 0);
     }
+
+    public static void initPlayerData(UUID uuid) {
+        String id = uuid.toString();
+        String selectQuery = "SELECT inventory, crypto FROM player_data WHERE id = ?";
+
+        try(PreparedStatement stmt = connection.prepareStatement(selectQuery)) {
+            stmt.setString(1, id);
+            ResultSet rs = stmt.executeQuery();
+
+            if(!rs.next()) {
+                String insertQuery = """
+                    INSERT INTO player_data (id, inventory, crypto)
+                    VALUES (?, ?, ?);
+                """;
+
+                try(PreparedStatement insertStmt = connection.prepareStatement(insertQuery)) {
+                    insertStmt.setString(1, id);
+                    insertStmt.setString(2, "");
+                    insertStmt.setDouble(3, 0);
+                    insertStmt.executeUpdate();
+                } catch(SQLException e) {
+                    Bukkit.getLogger().severe("Failed to save player data for " + Bukkit.getPlayer(uuid));
+                }
+            }
+        } catch(SQLException e) {
+            Bukkit.getLogger().severe("Failed to fetch player data for " + Bukkit.getPlayer(uuid));
+        }
+    }
 }

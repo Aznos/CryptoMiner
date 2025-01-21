@@ -6,6 +6,7 @@ import com.aznos.crypto.data.Miner;
 import com.aznos.crypto.data.PlayerData;
 import com.aznos.crypto.db.Database;
 import com.aznos.crypto.listener.InventoryClick;
+import com.aznos.crypto.listener.PlayerJoin;
 import com.aznos.crypto.tab.CryptoCommandTab;
 import com.aznos.crypto.util.Formatting;
 import com.aznos.crypto.util.Revenue;
@@ -78,6 +79,7 @@ public final class Crypto extends JavaPlugin {
         getCommand("crypto").setTabCompleter(new CryptoCommandTab());
 
         getServer().getPluginManager().registerEvents(new InventoryClick(), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
     }
 
     @Override
