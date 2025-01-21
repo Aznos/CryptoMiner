@@ -15,6 +15,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
+import java.text.DecimalFormat;
+
 public class CryptoCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
@@ -110,7 +112,8 @@ public class CryptoCommand implements CommandExecutor {
                 sender.sendMessage("You must be a player to use this command");
             }
         } else if(args[0].equalsIgnoreCase("price")) {
-            sender.sendMessage(ChatColor.GOLD + ChatColor.BOLD.toString() + "1₿" + ChatColor.RESET + ChatColor.GOLD + " is currently worth " + ChatColor.GREEN + ChatColor.BOLD + "$" + Crypto.BTC_TO_USD);
+            DecimalFormat df = new DecimalFormat("#,###.00");
+            sender.sendMessage(ChatColor.GOLD + ChatColor.BOLD.toString() + "1₿" + ChatColor.RESET + ChatColor.GOLD + " is currently worth " + ChatColor.GREEN + ChatColor.BOLD + "$" + df.format(Conversions.btcToUSD(1)));
         } else {
             sender.sendMessage(ChatColor.RED + "Invalid subcommand");
         }
