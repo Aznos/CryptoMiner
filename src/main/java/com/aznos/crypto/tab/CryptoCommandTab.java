@@ -19,14 +19,14 @@ public class CryptoCommandTab implements TabCompleter {
             return StringUtil.copyPartialMatches(args[0], Arrays.asList("balance", "miners", "sell", "price"), new ArrayList<>());
         } else if(args.length == 2) {
             if(args[0].equalsIgnoreCase("miners")) {
-                return StringUtil.copyPartialMatches(args[1], List.of("purchase"), new ArrayList<>());
+                return StringUtil.copyPartialMatches(args[1], List.of("purchase", "info"), new ArrayList<>());
             }
 
             if(args[0].equalsIgnoreCase("sell")) {
                 return StringUtil.copyPartialMatches(args[1], Arrays.asList("all", "half"), new ArrayList<>());
             }
         } else if(args.length == 3) {
-            if(args[0].equalsIgnoreCase("miners") && args[1].equalsIgnoreCase("purchase")) {
+            if(args[0].equalsIgnoreCase("miners") && args[1].equalsIgnoreCase("purchase") || args[1].equalsIgnoreCase("info")) {
                 return StringUtil.copyPartialMatches(args[2], Crypto.MINERS.keySet(), new ArrayList<>());
             }
         }

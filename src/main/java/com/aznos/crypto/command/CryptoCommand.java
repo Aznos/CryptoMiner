@@ -7,6 +7,7 @@ import com.aznos.crypto.db.Database;
 import com.aznos.crypto.ui.MinerUI;
 import com.aznos.crypto.util.Conversions;
 import com.aznos.crypto.util.Formatting;
+import com.aznos.crypto.util.Revenue;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -54,7 +55,7 @@ public class CryptoCommand implements CommandExecutor {
                             if(balance >= miner.getCost()) {
                                 data = new PlayerData(data.inventory() + miner.getName().toUpperCase() + ',', data.crypto());
                                 Database.savePlayerData(player.getUniqueId(), data.inventory(), data.crypto());
-                                Crypto.economy.withdrawPlayer(player,  miner.getCost());
+                                Crypto.economy.withdrawPlayer(player, miner.getCost());
                                 player.sendMessage(ChatColor.GREEN + "You have purchased a " + miner.getName() + " miner for " + ChatColor.GOLD + ChatColor.BOLD + miner.getCost() + ChatColor.RESET + ChatColor.GREEN + "$");
                             } else {
                                 player.sendMessage(ChatColor.RED + "You do not have enough money to purchase a " + miner.getName() + " miner");
@@ -62,7 +63,30 @@ public class CryptoCommand implements CommandExecutor {
                         } else {
                             player.sendMessage(ChatColor.RED + "Invalid subcommand");
                         }
-                    } else {
+                    } else if(args[1].equalsIgnoreCase("info")) {
+                        String minerName = args[2];
+                        Miner miner = Crypto.MINERS.get(minerName);
+
+                        if(miner != null) {
+                            String manufacturerColor = switch(miner.getManufacturer()) {
+                                case "Nvidia" -> ChatColor.GREEN.toString();
+                                case "AMD" -> ChatColor.RED.toString();
+                                default -> null;
+                            };
+
+                            double revenue = Revenue.calculateRevenue(miner.getHashRate(), miner.getPowerConsumption());
+
+                            player.sendMessage(ChatColor.GRAY + ChatColor.BOLD.toString() + "------------------------");
+                            player.sendMessage(ChatColor.YELLOW + ChatColor.BOLD.toString() + miner.getName());
+                            player.sendMessage("  ");
+                            player.sendMessage(ChatColor.GOLD + "Cost: " + ChatColor.GREEN + "$" + miner.getCost());
+                            player.sendMessage(ChatColor.GOLD + "Manufacturer: " + manufacturerColor + miner.getManufacturer());
+                            player.sendMessage(ChatColor.GOLD + "Revenue/D: " + ChatColor.GREEN + "$" + Conversions.btcToUSD(revenue));
+                            player.sendMessage(ChatColor.GOLD + "Hashrate: " + ChatColor.GREEN + Conversions.formatHashRate(miner.getHashRate()));
+                            player.sendMessage(ChatColor.GRAY + ChatColor.BOLD.toString() + "------------------------");
+                        }
+                    }
+                    else {
                         player.sendMessage(ChatColor.RED + "Invalid subcommand");
                     }
                 } else {

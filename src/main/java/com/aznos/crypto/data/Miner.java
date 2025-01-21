@@ -40,7 +40,7 @@ public class Miner {
 
         ItemStack stack = new ItemStack(getMaterial());
         ItemMeta meta = stack.getItemMeta();
-        meta.setDisplayName(name);
+        meta.setDisplayName(ChatColor.YELLOW + name);
         meta.setLore(List.of(
                 ChatColor.GOLD + "Manufacturer: " + manufacturerColor + manufacturer,
                 ChatColor.GOLD + "Revenue/D: " + ChatColor.GREEN + "$" + Conversions.btcToUSD(revenue),
