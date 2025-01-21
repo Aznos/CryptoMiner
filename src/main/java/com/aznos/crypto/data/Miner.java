@@ -1,5 +1,6 @@
 package com.aznos.crypto.data;
 
+import com.aznos.crypto.util.Conversions;
 import com.aznos.crypto.util.Revenue;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,10 +43,10 @@ public class Miner {
         meta.setDisplayName(name);
         meta.setLore(List.of(
                 ChatColor.GOLD + "Manufacturer: " + manufacturerColor + manufacturer,
-                ChatColor.GOLD + "Revenue/D: $" + ChatColor.GREEN + revenue,
-                ChatColor.GOLD + "Hash Rate: " + hashRate + "H/s",
-                ChatColor.GOLD + "Power Consumption: " + powerConsumption + "W",
-                ChatColor.GOLD + "Sell Value: $" + getSellValue()
+                ChatColor.GOLD + "Revenue/D: " + ChatColor.GREEN + "$" + Conversions.btcToUSD(revenue),
+                ChatColor.GOLD + "Hash Rate: " + ChatColor.GREEN + Conversions.formatHashRate(hashRate),
+                ChatColor.GOLD + "Power Consumption: " + ChatColor.GREEN + powerConsumption + "W",
+                ChatColor.GOLD + "Sell Value: " + ChatColor.GREEN + "$" + getSellValue()
         ));
 
         stack.setItemMeta(meta);
