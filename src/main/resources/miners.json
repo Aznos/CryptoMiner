@@ -202,5 +202,133 @@
     "powerConsumption": 450,
     "cost": 1800,
     "material": "SPRUCE_LOG"
+  },
+  {
+    "name": "R9-380",
+    "manufacturer": "AMD",
+    "hashRate": 1500000,
+    "powerConsumption": 190,
+    "cost": 65,
+    "material": "BIRCH_LOG"
+  },
+  {
+    "name": "R9-390",
+    "manufacturer": "AMD",
+    "hashRate": 2000000,
+    "powerConsumption": 275,
+    "cost": 120,
+    "material": "JUNGLE_LOG"
+  },
+  {
+    "name": "R9-390",
+    "manufacturer": "AMD",
+    "hashRate": 2000000,
+    "powerConsumption": 275,
+    "cost": 120,
+    "material": "JUNGLE_LOG"
+  },
+  {
+    "name": "R9-460",
+    "manufacturer": "AMD",
+    "hashRate": 3000000,
+    "powerConsumption": 75,
+    "cost": 65,
+    "material": "ACACIA_LOG"
+  },
+  {
+    "name": "R9-480",
+    "manufacturer": "AMD",
+    "hashRate": 9600000,
+    "powerConsumption": 150,
+    "cost": 80,
+    "material": "DARK_OAK_LOG"
+  },
+  {
+    "name": "RX-5500XT-8GB",
+    "manufacturer": "AMD",
+    "hashRate": 10350000,
+    "powerConsumption": 130,
+    "cost": 160,
+    "material": "RED_TERRACOTTA"
+  },
+  {
+    "name": "RX-5600",
+    "manufacturer": "AMD",
+    "hashRate": 10800000,
+    "powerConsumption": 150,
+    "cost": 200,
+    "material": "ORANGE_TERRACOTTA"
+  },
+  {
+    "name": "RX-5600",
+    "manufacturer": "AMD",
+    "hashRate": 10800000,
+    "powerConsumption": 150,
+    "cost": 200,
+    "material": "WHITE_TERRACOTTA"
+  },
+  {
+    "name": "RX-5700XT-8GB",
+    "manufacturer": "AMD",
+    "hashRate": 14000000,
+    "powerConsumption": 225,
+    "cost": 210,
+    "material": "YELLOW_TERRACOTTA"
+  },
+  {
+    "name": "RX-590-8GB",
+    "manufacturer": "AMD",
+    "hashRate": 11340000,
+    "powerConsumption": 225,
+    "cost": 110,
+    "material": "GREEN_TERRACOTTA"
+  },
+  {
+    "name": "RX-6600-8GB",
+    "manufacturer": "AMD",
+    "hashRate": 13800000,
+    "powerConsumption": 132,
+    "cost": 270,
+    "material": "LIME_TERRACOTTA"
+  },
+  {
+    "name": "RX-6700XT-12GB",
+    "manufacturer": "AMD",
+    "hashRate": 23300000,
+    "powerConsumption": 230,
+    "cost": 330,
+    "material": "BLUE_TERRACOTTA"
+  },
+  {
+    "name": "RX-6900XT-16GB",
+    "manufacturer": "AMD",
+    "hashRate": 33400000,
+    "powerConsumption": 300,
+    "cost": 890,
+    "material": "PURPLE_TERRACOTTA"
+  },
+  {
+    "name": "RX-7600",
+    "manufacturer": "AMD",
+    "hashRate": 18050000,
+    "powerConsumption": 165,
+    "cost": 350,
+    "material": "CYAN_TERRACOTTA"
+  },
+  {
+    "name": "RX-7800XT",
+    "manufacturer": "AMD",
+    "hashRate": 35500000,
+    "powerConsumption": 260,
+    "cost": 500,
+    "material": "MAGENTA_TERRACOTTA"
+  },
+  {
+    "name": "RX-7900XTX-24GB",
+    "manufacturer": "AMD",
+    "hashRate": 58500000,
+    "powerConsumption": 355,
+    "cost": 900,
+    "material": "BLACK_TERRACOTTA"
   }
 ]
