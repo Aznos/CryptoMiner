@@ -14,13 +14,6 @@ This plugin is data driven, meaning without having to use an external API or req
 
 Every minute, the live bitcoin price is fetched. This means that instead of having a value that is always set (for example $60,000), the live bitcoin price transfers into the game. This means players earnings will vary between days.
 
-
-### Open source
-
-You can find the source code [Here](https://github.com/Aznos/CryptoMiner)
-
-And report issues and request new features [Here](https://github.com/Aznos/CryptoMiner/issues)
-
 ### Current miners
 
 
