@@ -9,6 +9,7 @@ import com.aznos.crypto.listener.InventoryClick;
 import com.aznos.crypto.listener.PlayerJoin;
 import com.aznos.crypto.tab.CryptoCommandTab;
 import com.aznos.crypto.util.Formatting;
+import com.aznos.crypto.util.Metrics;
 import com.aznos.crypto.util.Revenue;
 import com.google.gson.Gson;
 import net.milkbowl.vault.economy.Economy;
@@ -40,6 +41,9 @@ public final class Crypto extends JavaPlugin {
         INSTANCE = this;
         makeDataFolder();
         initDB();
+
+        int pluginId = 24535;
+        Metrics metrics = new Metrics(this, pluginId);
 
         registerMiners();
         if(!setupEconomy()) {
