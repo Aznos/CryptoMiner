@@ -140,6 +140,22 @@ public class CryptoCommand implements CommandExecutor {
         } else if(args[0].equalsIgnoreCase("price")) {
             DecimalFormat df = new DecimalFormat("#,###.00");
             sender.sendMessage(ChatColor.GOLD + ChatColor.BOLD.toString() + "1₿" + ChatColor.RESET + ChatColor.GOLD + " is currently worth " + ChatColor.GREEN + ChatColor.BOLD + "$" + df.format(Conversions.btcToUSD(1)));
+        } else if(args[0].equalsIgnoreCase("purchase") || args[0].equalsIgnoreCase("buy")) {
+            double amount = Conversions.usdToBTC(Double.parseDouble(args[1]));
+
+            if(sender instanceof Player player) {
+                PlayerData data = Database.fetchPlayerData(player.getUniqueId());
+                double balance = Crypto.economy.getBalance(player);
+
+                if(balance >= Double.parseDouble(args[1])) {
+                    data = new PlayerData(data.inventory(), data.crypto() + amount);
+                    Database.savePlayerData(player.getUniqueId(), data.inventory(), data.crypto());
+                    Crypto.economy.withdrawPlayer(player, Double.parseDouble(args[1]));
+                    player.sendMessage(ChatColor.GREEN + "You have purchased " + ChatColor.GOLD + ChatColor.BOLD + String.format("%.8f", amount) + ChatColor.RESET + ChatColor.GREEN + "₿ for " + ChatColor.GOLD + ChatColor.BOLD + "$" + args[1]);
+                } else {
+                    player.sendMessage(ChatColor.RED + "You do not have enough money to purchase that amount of crypto");
+                }
+            }
         } else {
             sender.sendMessage(ChatColor.RED + "Invalid subcommand");
         }

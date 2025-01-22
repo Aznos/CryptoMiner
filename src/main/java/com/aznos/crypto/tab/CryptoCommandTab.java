@@ -16,7 +16,7 @@ public class CryptoCommandTab implements TabCompleter {
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         if(args.length == 1) {
-            return StringUtil.copyPartialMatches(args[0], Arrays.asList("balance", "miners", "sell", "price"), new ArrayList<>());
+            return StringUtil.copyPartialMatches(args[0], Arrays.asList("balance", "miners", "sell", "price", "purchase"), new ArrayList<>());
         } else if(args.length == 2) {
             if(args[0].equalsIgnoreCase("miners")) {
                 return StringUtil.copyPartialMatches(args[1], List.of("purchase", "info"), new ArrayList<>());
